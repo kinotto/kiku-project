@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+def tomcatHome = System.env.CATALINA_HOME
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "javax.ws.rs:jsr311-api:1.1.1"
+	
+
+    compile 'com.sun.jersey:jersey-server:1.13'
+    compile 'com.sun.jersey:jersey-core:1.13'
+    compile 'com.sun.jersey:jersey-servlet:1.13'
+	compile 'com.sun.jersey:jersey-json:1.13'
+
+    testCompile "junit:junit-dep:4.10"
+    
+    /*NEW packages*/
+    
+}
+
+task pullDeps(type: Copy) {
+  from sourceSets.main.runtimeClasspath
+  into 'runtime/'
+}
+task deployToTomcat(type: Copy) {
+    from war.archivePath
+    into "${tomcatHome}/webapps"
+    println "${tomcatHome}"
+}
+task deploy() {
+    dependsOn 'clean'
+    dependsOn 'build'
+    dependsOn 'deployToTomcat'
+    tasks.findByName('build').mustRunAfter 'clean'
+	tasks['deployToTomcat'].mustRunAfter 'build'
+}
