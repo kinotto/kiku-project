@@ -8,9 +8,7 @@
 		function restcall(){
 			$.ajax({ 
 				   type: "POST",
-				   data: {
-					   "pippo": "ciao"
-				   },
+				   data: JSON.stringify(eval({"pippo": "ciao"})),
 				   dataType: "json", //response
 				   contentType: "application/json", //request
 				   url: "rest/hellocors",

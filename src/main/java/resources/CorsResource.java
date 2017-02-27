@@ -20,7 +20,7 @@ public class CorsResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	//@Consumes("text/plain") 
-	public Response sayhello(String tMatrix) {
+	public Response sayhello(TboardMatrix tMatrix) {
 		
 	   System.out.println(tMatrix);
 	   String p = "ciao";
