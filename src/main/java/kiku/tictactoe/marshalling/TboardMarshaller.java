@@ -47,7 +47,6 @@ public class TboardMarshaller {
 			TboardServerModel tBoardServer, TboardClientModel tBoardClient) 
 					throws TicTacToeException{
 
-		TboardClientModel rawBoard = new TboardClientModel();
 		String[] cells = new String[TicTacToeBoard.NUM_CELLS];
 		int indexCell = 0;
 		for(int y=0; y<TicTacToeBoard.HEIGHT; y++){
