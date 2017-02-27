@@ -5,10 +5,11 @@
 	<title>Insert title here</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
+		var myJson = {state: ['ciao']};
 		function restcall(){
 			$.ajax({ 
 				   type: "POST",
-				   data: JSON.stringify(eval({"pippo": "ciao"})),
+				   data: JSON.stringify(eval(myJson)),
 				   dataType: "json", //response
 				   contentType: "application/json", //request
 				   url: "rest/hellocors",

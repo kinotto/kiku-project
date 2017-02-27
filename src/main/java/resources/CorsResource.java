@@ -21,9 +21,8 @@ public class CorsResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	//@Consumes("text/plain") 
 	public Response sayhello(TboardMatrix tMatrix) {
-		
+	
 	   System.out.println(tMatrix);
-	   String p = "ciao";
 	   Test t = new Test();
 	   t.setName("corsname");
 	   t.setSurname("corssurname");
