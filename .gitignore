@@ -2,3 +2,4 @@
 .settings
 build
 runtime
+target/classes

@@ -1,4 +1,4 @@
-package bean;
+package kiku.bean;
 
 public class Test {
 	private String name;

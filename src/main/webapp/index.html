@@ -7,10 +7,14 @@
 	<script>
 		function restcall(){
 			$.ajax({ 
-				   type: "GET",
-				   dataType: "json",
+				   type: "POST",
+				   data: {
+					   "pippo": "ciao"
+				   },
+				   dataType: "json", //response
+				   contentType: "application/json", //request
 				   url: "rest/hellocors",
-				   success: function(data){        
+				   success: function(data){      
 				     alert(data);
 				   },
 				   cache: false

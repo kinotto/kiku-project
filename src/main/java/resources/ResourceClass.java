@@ -1,4 +1,4 @@
-package myresources;
+package resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -6,9 +6,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.sun.jersey.api.json.JSONWithPadding;
+import kiku.bean.Test;
 
-import bean.Test;
+import com.sun.jersey.api.json.JSONWithPadding;
 
 
 
