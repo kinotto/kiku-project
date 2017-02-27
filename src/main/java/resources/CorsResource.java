@@ -9,24 +9,53 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import kiku.bean.Test;
-import kiku.tictactoe.marshalling.TboardMatrix;
+import kiku.tictactoe.marshalling.TboardMarshaller;
+import kiku.tictactoe.marshalling.TboardClientModel;
+import kiku.tictactoe.marshalling.TboardServerModel;
+import kiku.tictactoe.model.TicTacToeAIPlayer;
+import kiku.tictactoe.model.TicTacToeBoard;
+import kiku.tictactoe.model.TicTacToeBoard.Cell;
+import kiku.tictactoe.model.TicTacToeBoard.Location;
+import kiku.tictactoe.model.TicTacToeException;
 import kiku.utilities.CorsResponseFilter;
 
  
 @Path("hellocors")
 public class CorsResource { 
+	
+	TicTacToeAIPlayer aiPlayer;
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	//@Consumes("text/plain") 
-	public Response sayhello(TboardMatrix tMatrix) {
-	
-	   System.out.println(tMatrix);
-	   Test t = new Test();
-	   t.setName("corsname");
-	   t.setSurname("corssurname");
-	   return CorsResponseFilter.wrapResponse(t);
+	public Response sayhello(TboardClientModel tBoardClient) {
+	   	   
+	   System.out.println(tBoardClient);
+	   TboardServerModel tBoardServer = null;
+	   TicTacToeBoard gameBoard = null;
+	   
+	   try {
+		   tBoardServer = TboardMarshaller.unmarshalling(tBoardClient);
+		   gameBoard = new TicTacToeBoard(tBoardServer.getState());
+		   Cell aiTeam = gameBoard.oppositePlayer(tBoardServer.getTeam());
+		   aiPlayer = new TicTacToeAIPlayer();
+		   aiPlayer.initialize(aiTeam, gameBoard); 
+		   Location move = aiPlayer.makeMove();
+		   gameBoard.makeMove(aiTeam, move);
+		   TboardMarshaller.marshalling(gameBoard, tBoardServer, tBoardClient);
+		   
+	   } catch (TicTacToeException e) {
+			e.printStackTrace();
+	   }
+	   
+	   
+	   
+	   
+	   //Test t = new Test();
+	   //t.setName("corsname");
+	   //t.setSurname("corssurname");
+	   return CorsResponseFilter.wrapResponse(tBoardClient);
 
 	}
 	
