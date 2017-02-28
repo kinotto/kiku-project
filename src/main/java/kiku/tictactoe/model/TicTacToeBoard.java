@@ -112,7 +112,7 @@ public class TicTacToeBoard {
 	 *  null = Neither player has won yet
 	 * 
 	 */
-	public Cell winner() {
+	public Winner winner() {
 		//TODO: Get rid of magic numbers
 		int[][] winning_indexes = new int[][]{
 				// Horizontal lines
@@ -135,7 +135,8 @@ public class TicTacToeBoard {
 			if(board[winning_indexes[i][0]] != Cell.EMPTY
 					&& (board[winning_indexes[i][0]] == board[winning_indexes[i][1]]) 
 					&& (board[winning_indexes[i][1]] == board[winning_indexes[i][2]])){
-				return board[winning_indexes[i][0]];
+				//return board[winning_indexes[i][0]];
+				return new Winner(board[winning_indexes[i][0]], winning_indexes[i]);
 			}
 		}
 		
@@ -143,7 +144,8 @@ public class TicTacToeBoard {
 		// TODO: We can check if it is impossible for any one to win
 		// But that would be too much work for now
 		if(boardFull()) {
-			return Cell.EMPTY;
+			//return Cell.EMPTY;
+			return new Winner(Cell.EMPTY, null);
 		}
 		
 		// Otherwise there is no winner and the game can go on

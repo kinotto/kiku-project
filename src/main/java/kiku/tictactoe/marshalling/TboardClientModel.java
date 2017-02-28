@@ -3,10 +3,12 @@ package kiku.tictactoe.marshalling;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
+
 @XmlRootElement
 public class TboardClientModel {
 	public String[] state;
 	private String team;
+	private WinnerClientModel winner;
 	public TboardClientModel() {
 		
 	}
@@ -22,6 +24,11 @@ public class TboardClientModel {
 	public void setState(String[] state) {
 		this.state = state;
 	}
-
+	public WinnerClientModel getWinner() {
+		return winner;
+	}
+	public void setWinner(WinnerClientModel winner) {
+		this.winner = winner;
+	}
 	
 }

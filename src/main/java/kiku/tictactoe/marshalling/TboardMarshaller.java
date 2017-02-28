@@ -7,6 +7,7 @@ import kiku.tictactoe.model.TicTacToeBoard;
 import kiku.tictactoe.model.TicTacToeBoard.Cell;
 import kiku.tictactoe.model.TicTacToeBoard.Location;
 import kiku.tictactoe.model.TicTacToeException;
+import kiku.tictactoe.model.Winner;
 
 public class TboardMarshaller {
 	private static Map<String, Cell> mappingCtoS;
@@ -43,7 +44,7 @@ public class TboardMarshaller {
 		return new TboardServerModel(team, state);
 	}
 	
-	public static void marshalling(TicTacToeBoard gameState, 
+	public static void marshalling(TicTacToeBoard gameBoard, 
 			TboardServerModel tBoardServer, TboardClientModel tBoardClient) 
 					throws TicTacToeException{
 
@@ -51,7 +52,7 @@ public class TboardMarshaller {
 		int indexCell = 0;
 		for(int y=0; y<TicTacToeBoard.HEIGHT; y++){
 			for(int x=0; x<TicTacToeBoard.WIDTH; x++){
-				Cell c = gameState.cellAt(new Location(x, y));
+				Cell c = gameBoard.cellAt(new Location(x, y));
 				if(c == null){
 					throw new TicTacToeException("mapping map has invalid value");
 				}
@@ -62,7 +63,22 @@ public class TboardMarshaller {
 		if(team == null){
 			throw new TicTacToeException("mapping map has invalid value");
 		}
+		
+		Winner winner = gameBoard.winner();
+		WinnerClientModel w = new WinnerClientModel();
+
+		if(winner != null && winner.getIndexes() != null){
+			w.setIndexes(winner.getIndexes());
+			w.setTeam(mappingStoC.get(winner.getCell()));
+		}
+		else{
+			w.setIndexes(new int[0]);
+			w.setTeam(mappingStoC.get(Cell.EMPTY));
+		}
+		
+		tBoardClient.setWinner(w);
 		tBoardClient.setState(cells);
 		tBoardClient.setTeam(team);
+		
 	}
 }

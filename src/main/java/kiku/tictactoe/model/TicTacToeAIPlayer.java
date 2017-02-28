@@ -53,9 +53,9 @@ public class TicTacToeAIPlayer {
 		if(thisTeam != team) {
 			multiplyer = -1;
 		}
-		Cell winner = board.winner();
+		Winner winner = board.winner();
 		if(winner != null) {
-			return evaluateWinner(winner);
+			return evaluateWinner(winner.getCell());
 		}
 		
 		List<Location> possibleMoves = board.emptySlots();

@@ -31,8 +31,7 @@
 					   dataType: "json", //response
 					   contentType: "application/json", //request
 					   url: "rest/hellocors",
-					   success: function(data){ 
-						 console.log(data);
+					   success: function(data){
 						 game = data;
 						 
 						 tableBody.children[0].children[0].innerHTML = data.state[0]
@@ -45,15 +44,26 @@
 						 
 						 tableBody.children[0].children[2].innerHTML = data.state[6]
 						 tableBody.children[1].children[2].innerHTML = data.state[7]
-						 tableBody.children[2].children[2].innerHTML = data.state[8]
-					   },
+						 tableBody.children[2].children[2].innerHTML = data.state[8];
+						 if(data.winner.team){
+							 console.log(data.winner);
+							 console.log(data.state);
+							 setTimeout(function(){
+								 var choose = confirm("Player "+data.winner.team + " wins!");
+								 if (choose == true){
+								   window.location.reload();
+								 }
+							 }, 400);
+						 
+					   	}
+					},
 					   cache: false
 					}).fail(function (jqXHR, textStatus, error) {
-					    alert(error);
+					    console.log(error);
 					});
 				
 				
-			}, 1000);
+			}, 500);
 			
 				
 		}
