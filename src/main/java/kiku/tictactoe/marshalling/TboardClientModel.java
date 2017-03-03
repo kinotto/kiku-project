@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class TboardClientModel {
-	public String[] state;
+	private String[] state;
 	private String team;
 	private WinnerClientModel winner;
 	public TboardClientModel() {
