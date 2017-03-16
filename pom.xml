@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.underdog.jersey</groupId>
-    <artifactId>jersey-getting-started</artifactId>
+    <artifactId>jerseybackend</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>jersey-getting-started</name>
+    <name>jerseybackend</name>
 
     <build>
-        <finalName>jersey-getting-started</finalName>
+        <finalName>jerseybackend</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -22,6 +22,11 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+             <plugin>
+			  <groupId>com.heroku.sdk</groupId>
+			  <artifactId>heroku-maven-plugin</artifactId>
+			  <version>1.1.3</version>
+			</plugin>
         </plugins>
     </build>
 

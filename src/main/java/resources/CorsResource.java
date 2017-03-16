@@ -27,7 +27,7 @@ public class CorsResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	//@Consumes("text/plain") 
-	public Response sayhello(TboardClientModel tBoardClient) {
+	public TboardClientModel sayhello(TboardClientModel tBoardClient) {
 	   	   
 	   System.out.println(tBoardClient);
 	   TboardServerModel tBoardServer = null;
@@ -55,8 +55,8 @@ public class CorsResource {
 	   //Test t = new Test();
 	   //t.setName("corsname");
 	   //t.setSurname("corssurname");
-	   return CorsResponseFilter.wrapResponse(tBoardClient);
-
+	   //return CorsResponseFilter.wrapResponse(tBoardClient);
+	   return tBoardClient;
 	}
 	
 }
