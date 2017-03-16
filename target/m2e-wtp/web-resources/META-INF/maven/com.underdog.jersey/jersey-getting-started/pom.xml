@@ -27,30 +27,55 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
+            <!-- <dependency>
                 <groupId>org.glassfish.jersey</groupId>
                 <artifactId>jersey-bom</artifactId>
                 <version>${jersey.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
+            </dependency>-->
+            <dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-server</artifactId>
+				<version>1.13</version>
+			</dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
+        <!-- <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
-            <artifactId>jersey-container-servlet-core</artifactId>
+            <artifactId>jersey-container-servlet-core</artifactId>-->
             <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
             <!-- artifactId>jersey-container-servlet</artifactId -->
-        </dependency>
+        <!-- </dependency>-->
         <!-- uncomment this to get JSON support
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
         </dependency>
         -->
-
+	
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-core</artifactId>
+			<version>1.13</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-servlet</artifactId>
+			<version>1.13</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>1.13</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>1.13</version>
+		</dependency>-->
 		
     </dependencies>
     <properties>

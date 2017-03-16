@@ -1,16 +1,14 @@
 package resources;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import kiku.bean.Test;
-import kiku.tictactoe.marshalling.TboardMarshaller;
 import kiku.tictactoe.marshalling.TboardClientModel;
+import kiku.tictactoe.marshalling.TboardMarshaller;
 import kiku.tictactoe.marshalling.TboardServerModel;
 import kiku.tictactoe.model.TicTacToeAIPlayer;
 import kiku.tictactoe.model.TicTacToeBoard;
@@ -42,7 +40,9 @@ public class CorsResource {
 		   aiPlayer = new TicTacToeAIPlayer();
 		   aiPlayer.initialize(aiTeam, gameBoard); 
 		   Location move = aiPlayer.makeMove();
-		   gameBoard.makeMove(aiTeam, move);
+		   if(move != null){
+			   gameBoard.makeMove(aiTeam, move);
+		   }  
 		   TboardMarshaller.marshalling(gameBoard, tBoardServer, tBoardClient);
 		   
 	   } catch (TicTacToeException e) {
