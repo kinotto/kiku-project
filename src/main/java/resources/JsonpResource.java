@@ -1,4 +1,4 @@
-package resources;
+/*package resources;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -32,10 +32,7 @@ public class JsonpResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public JSONWithPadding sayhello(@QueryParam("callback") String callback,
 			TboardClientModel tBoardClient) {
-	   /*Test t = new Test();
-	   t.setName("pippo");
-	   t.setSurname("pluto");
-	   return new JSONWithPadding(t, callback);*/
+
 		
 	   TboardServerModel tBoardServer = null;
 	   TicTacToeBoard gameBoard = null;
@@ -57,4 +54,4 @@ public class JsonpResource {
 	   return new JSONWithPadding(tBoardClient, callback);
 	}
 	
-}
+}*/
