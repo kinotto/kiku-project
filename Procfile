@@ -1,1 +1,1 @@
-web: java -jar target/jerseybackend.jar
+web: java -jar target/jerseybackend.war
