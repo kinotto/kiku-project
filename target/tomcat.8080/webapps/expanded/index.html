@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script>
+		var myJson = {state: ['', '', '', '', '', '', '', '', ''], team: 'x'};
+		
+		var game = {};
+		
+		function restcall(x,y){
+			var tableBody = document.getElementById('gameTable').children[0];
+			if(game.state){
+				var posChecked = game.state[x + (y*3)];
+				if(posChecked === ''){
+					 game.state[x + (y*3)] = 'x';
+				}
+			} else{
+				game.state = ['', '', '', '', '', '', '', '', ''];
+				game.team = 'x';
+				game.state[x + (y*3)] = 'x';
+			}
+			tableBody.children[x].children[y].innerHTML = 'x';
+			
+			
+			setTimeout(function(){
+				$.ajax({ 
+					   type: "POST",
+					   data: JSON.stringify(eval(game)),
+					   dataType: "json", //response
+					   contentType: "application/json", //request
+					   url: "rest/hellocors",
+					   success: function(data){
+						 game = data;
+						 
+						 tableBody.children[0].children[0].innerHTML = data.state[0]
+						 tableBody.children[1].children[0].innerHTML = data.state[1]
+						 tableBody.children[2].children[0].innerHTML = data.state[2]
+						 
+						 tableBody.children[0].children[1].innerHTML = data.state[3]
+						 tableBody.children[1].children[1].innerHTML = data.state[4]
+						 tableBody.children[2].children[1].innerHTML = data.state[5]
+						 
+						 tableBody.children[0].children[2].innerHTML = data.state[6]
+						 tableBody.children[1].children[2].innerHTML = data.state[7]
+						 tableBody.children[2].children[2].innerHTML = data.state[8];
+						 if(data.winner.team){
+							 console.log(data.winner);
+							 console.log(data.state);
+							 setTimeout(function(){
+								 var choose = confirm("Player "+data.winner.team + " wins!");
+								 if (choose == true){
+								   window.location.reload();
+								 }
+							 }, 400);
+						 
+					   	}
+					},
+					   cache: false
+					}).fail(function (jqXHR, textStatus, error) {
+					    console.log(error);
+					});
+				
+				
+			}, 500);
+			
+				
+		}
+	</script>
+</head>
+<body>
+	<!-- <div onclick="restcall()">TEST</div>-->
+	<div class="row" style="margin-top: 20px">
+		<div class="col-sm-4 col-sm-offset-4">
+				<div class="table-responsive">
+			  		<table id="gameTable" class="table table-bordered">
+						<tr style="height: 100px">
+							<td onclick="restcall(0,0)"></td>
+							<td onclick="restcall(0,1)"></td>
+							<td onclick="restcall(0,2)"></td>
+						</tr>
+						<tr style="height: 100px">
+							<td onclick="restcall(1,0)"></td>
+							<td onclick="restcall(1,1)"></td>
+							<td onclick="restcall(1,2)"></td>
+						</tr>
+						<tr style="height: 100px">
+							<td onclick="restcall(2,0)"></td>
+							<td onclick="restcall(2,1)"></td>
+							<td onclick="restcall(2,2)"></td>
+						</tr>
+					</table>
+				</div>
+		</div>	
+	</div>
+
+</body>
+</html>
