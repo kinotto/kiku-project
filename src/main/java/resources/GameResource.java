@@ -15,11 +15,11 @@ import kiku.tictactoe.model.TicTacToeBoard;
 import kiku.tictactoe.model.TicTacToeBoard.Cell;
 import kiku.tictactoe.model.TicTacToeBoard.Location;
 import kiku.tictactoe.model.TicTacToeException;
-import kiku.utilities.CorsResponseFilter;
+
 
  
-@Path("hellocors")
-public class CorsResource { 
+@Path("game")
+public class GameResource { 
 	
 	TicTacToeAIPlayer aiPlayer;
 
@@ -49,13 +49,7 @@ public class CorsResource {
 			e.printStackTrace();
 	   }
 	   
-	   
-	   
-	   
-	   //Test t = new Test();
-	   //t.setName("corsname");
-	   //t.setSurname("corssurname");
-	   //return CorsResponseFilter.wrapResponse(tBoardClient);
+
 	   return tBoardClient;
 	}
 	

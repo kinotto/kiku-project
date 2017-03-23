@@ -9,8 +9,10 @@ public class TboardClientModel {
 	private String[] state;
 	private String team;
 	private WinnerClientModel winner;
+	private boolean draw;
+	
 	public TboardClientModel() {
-		
+
 	}
 	public String getTeam() {
 		return team;
@@ -31,4 +33,10 @@ public class TboardClientModel {
 		this.winner = winner;
 	}
 	
+	public void setDraw(boolean draw) {
+		this.draw = draw;
+	}
+	public boolean getDraw() {
+		return draw;
+	}
 }

@@ -1,22 +1,21 @@
 package kiku.utilities;
 
-import javax.ws.rs.core.Response;
+import com.sun.jersey.spi.container.ContainerRequest;
+import com.sun.jersey.spi.container.ContainerResponse;
+import com.sun.jersey.spi.container.ContainerResponseFilter;
 
+public class CorsResponseFilter implements ContainerResponseFilter {
+    @Override
+    public ContainerResponse filter(ContainerRequest request,
+            ContainerResponse response) {
 
+        response.getHttpHeaders().add("Access-Control-Allow-Origin", "*");
+        response.getHttpHeaders().add("Access-Control-Allow-Headers",
+                "origin, content-type, accept, authorization");
+        response.getHttpHeaders().add("Access-Control-Allow-Credentials", "true");
+        response.getHttpHeaders().add("Access-Control-Allow-Methods",
+                "GET, POST, PUT, DELETE, OPTIONS, HEAD");
 
-public class CorsResponseFilter{
-
-	public static Response wrapResponse(Object bean){
-		return Response.ok()
-				.entity(bean)
-				/*.header("Access-Control-Allow-Origin", "*")
-				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
-				.header("Access-Control-Allow-Headers", "Content-Type")
-	            .build();*/
-			.header("Access-Control-Allow-Origin", "*")
-	      .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
-	      .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
-		
-	}
-
+        return response;
+    }
 }

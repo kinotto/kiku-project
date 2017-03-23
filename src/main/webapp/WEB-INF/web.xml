@@ -11,7 +11,7 @@
         
 		<init-param>
 		  <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
-		  <param-value>kiku.utilities.CorsResponseFilter2</param-value>
+		  <param-value>kiku.utilities.CorsResponseFilter</param-value>
 		</init-param>
 		
         <!-- the following is only needed if you want to use the built-in support

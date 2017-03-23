@@ -4,14 +4,14 @@ import kiku.tictactoe.model.TicTacToeBoard.Cell;
 
 
 
-public class Winner {
+public class TicTacToeWinner {
 	private Cell cell;
 	private int[] indexes;
 	
-	public Winner() {
+	public TicTacToeWinner() {
 		// TODO Auto-generated constructor stub
 	}
-	public Winner(Cell cell, int[] indexes) {
+	public TicTacToeWinner(Cell cell, int[] indexes) {
 		setCell(cell);
 		setIndexes(indexes);
 	}

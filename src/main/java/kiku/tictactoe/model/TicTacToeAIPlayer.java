@@ -53,7 +53,7 @@ public class TicTacToeAIPlayer {
 		if(thisTeam != team) {
 			multiplyer = -1;
 		}
-		Winner winner = board.winner();
+		TicTacToeWinner winner = board.winner();
 		if(winner != null) {
 			return evaluateWinner(winner.getCell());
 		}
