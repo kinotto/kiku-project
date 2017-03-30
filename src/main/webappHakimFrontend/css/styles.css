@@ -1,0 +1,100 @@
+/*HEADER SECTION*/
+
+.container{
+  position: relative;
+}
+h1{
+font-family: 'Baloo Bhaina', cursive;
+  margin-top: 0;
+  color: #557c3e;
+}
+.navbar{
+  padding-bottom: 10px;
+  background-color: #f6b319;
+}
+.navbar-header button.navbar-toggle, .navbar-header .icon-bar{
+  border-color: black;
+  border-style: solid;
+}
+#collapsable-nav{
+  background-color: white;
+}
+#nav-list a{
+  color: black;
+  font-size: 1.8em;
+  text-align: center;
+  border-top-width: 1px;
+  border-top-color: black;
+}
+#nav-list a:hover{
+  background-color: yellow;
+}
+span.glyphicon{
+  font-size: 2em;
+  float: right;
+}
+
+
+
+/*BODY SECTION*/
+body{
+  background-color: #61122f;
+}
+.container-fluid{
+  background-color: grey;
+  width: 70%;
+}
+h2{
+  font-weight: bold;
+  font-family: 'Lora', serif;
+  color: black;
+}
+.quadrato{
+  /*dimensioni quadrato*/
+  width: 300px;
+  height: 300px;
+  /*position centered*/
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 50px;
+   margin-bottom: 20px;
+}
+.quadrato *{
+  width: 33.333333333%;
+  height: 33.333333333%;
+}
+.quadrato .quadrato-top-left{
+  border-bottom-style: solid;
+}
+.quadrato .quadrato-top{
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-right-style: solid;
+}
+.quadrato .quadrato-top-right{
+  border-bottom-style: solid;
+}
+.quadrato .quadrato-middle-left{
+  border-bottom-style: solid;
+}
+.quadrato .quadrato-middle{
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-right-style: solid;
+}
+.quadrato .quadrato-middle-right{
+  border-bottom-style: solid;
+}
+.quadrato .quadrato-bottom{
+  border-left-style: solid;
+  border-right-style: solid;
+}
+
+.row{
+  font-family: 'Baloo Bhaina', cursive;
+  text-align: center;
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
