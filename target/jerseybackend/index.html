@@ -1,100 +1,93 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="ISO-8859-1">
-	<title>Insert title here</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script>
-		var myJson = {state: ['', '', '', '', '', '', '', '', ''], team: 'x'};
-		
-		var game = {};
-		
-		function restcall(x,y){
-			var tableBody = document.getElementById('gameTable').children[0];
-			if(game.state){
-				var posChecked = game.state[x + (y*3)];
-				if(posChecked === ''){
-					 game.state[x + (y*3)] = 'x';
-				}
-			} else{
-				game.state = ['', '', '', '', '', '', '', '', ''];
-				game.team = 'x';
-				game.state[x + (y*3)] = 'x';
-			}
-			tableBody.children[x].children[y].innerHTML = 'x';
-			
-			
-			setTimeout(function(){
-				$.ajax({ 
-					   type: "POST",
-					   data: JSON.stringify(eval(game)),
-					   dataType: "json", //response
-					   contentType: "application/json", //request
-					   url: "rest/game",
-					   success: function(data){
-						 game = data;
-						 
-						 tableBody.children[0].children[0].innerHTML = data.state[0]
-						 tableBody.children[1].children[0].innerHTML = data.state[1]
-						 tableBody.children[2].children[0].innerHTML = data.state[2]
-						 
-						 tableBody.children[0].children[1].innerHTML = data.state[3]
-						 tableBody.children[1].children[1].innerHTML = data.state[4]
-						 tableBody.children[2].children[1].innerHTML = data.state[5]
-						 
-						 tableBody.children[0].children[2].innerHTML = data.state[6]
-						 tableBody.children[1].children[2].innerHTML = data.state[7]
-						 tableBody.children[2].children[2].innerHTML = data.state[8];
-						 if(data.winner.team){
-							 console.log(data.winner);
-							 console.log(data.state);
-							 setTimeout(function(){
-								 var choose = confirm("Player "+data.winner.team + " wins!");
-								 if (choose == true){
-								   window.location.reload();
-								 }
-							 }, 400);
-						 
-					   	}
-					},
-					   cache: false
-					}).fail(function (jqXHR, textStatus, error) {
-					    console.log(error);
-					});
-				
-				
-			}, 500);
-			
-				
-		}
-	</script>
-</head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+  </head>
 <body>
-	<!-- <div onclick="restcall()">TEST</div>-->
-	<div class="row" style="margin-top: 20px">
-		<div class="col-sm-4 col-sm-offset-4">
-				<div class="table-responsive">
-			  		<table id="gameTable" class="table table-bordered">
-						<tr style="height: 100px">
-							<td onclick="restcall(0,0)"></td>
-							<td onclick="restcall(0,1)"></td>
-							<td onclick="restcall(0,2)"></td>
-						</tr>
-						<tr style="height: 100px">
-							<td onclick="restcall(1,0)"></td>
-							<td onclick="restcall(1,1)"></td>
-							<td onclick="restcall(1,2)"></td>
-						</tr>
-						<tr style="height: 100px">
-							<td onclick="restcall(2,0)"></td>
-							<td onclick="restcall(2,1)"></td>
-							<td onclick="restcall(2,2)"></td>
-						</tr>
-					</table>
-				</div>
-		</div>	
-	</div>
+  <header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+          <a class="navbar-brand" href="index.html"><h1>Bentornato Hakim</h1></a>
 
+      </div>
+      <div class="visible-xs">
+        <div id="collapsable-nav" class="collapse navbar-collapse">
+        <ul id="nav-list" class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#">Logout</a>
+          </li>
+        </ul>
+        </div>
+    </div>
+    <div class="visible-sm visible-md visible-lg">
+    <span class=" glyphicon glyphicon-user"></span>
+    </div>
+    </div>
+  </nav>
+  </header>
+<div class="container-fluid">
+      <h2 class="text-center">Tris / Tic Tac Toe</h2>
+
+    <div class="quadrato">
+
+        <div id="q1" class="quadrato-top-left col-md-4 col-sm-4 col-xs-4" onclick="click()">
+
+        </div>
+        <div class="quadrato-top col-md-4 col-sm-4 col-xs-4">
+
+        </div>
+        <div class="quadrato-top-right col-md-4 col-sm-4 col-xs-4">
+
+        </div>
+        <div class="quadrato-middle-left col-md-4 col-sm-4 col-xs-4">
+
+        </div>
+        <div class="quadrato-middle col-md-4 col-sm-4 col-xs-4">
+
+        </div>
+        <div class="quadrato-middle-right col-md-4 col-sm-4 col-xs-4">
+
+        </div>
+        <div class="quadrato-bottom-left col-md-4 col-sm-4 col-xs-4">
+
+        </div>
+        <div class="quadrato-bottom col-md-4 col-sm-4 col-xs-4">
+
+        </div>
+        <div class="quadrato-bottom-right col-md-4 col-sm-4 col-xs-4">
+
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <h3>Tuo Punteggio</h3>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <h3>Punteggio PC</h3>
+        </div>
+      </div>
+</div>
+
+  <!-- jQuery (Bootstrap JS plugins depend on it) -->
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
