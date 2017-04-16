@@ -51,7 +51,7 @@ h2{
 }
 .quadrato{
   /*dimensioni quadrato*/
-  width: 300px;
+  max-width: 300px;
   height: 300px;
   /*position centered*/
    margin-left: auto;
