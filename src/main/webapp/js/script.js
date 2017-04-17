@@ -5,7 +5,7 @@ var URL = {
 
 
 var game = {
-  team: "x",
+  team: "X",
   state: ["","","","","","","","",""]
 }
 
@@ -19,59 +19,72 @@ updateScores();
 var isClicked = false;
 function handleClick(index){
   if(game.state[index] === "" && isClicked === false){
-    game.state[index] = game.team;
+    game.state[index] = game.team.toUpperCase();
     updateTrisDom();
     //document.querySelector("#q1").innerHTML="<img src='images/x-tris.jpg'></img>";
 
     isClicked = true;
-    var options = {
-      method: "POST",
-      url: URL.test,
-      dataType: "json",
-      data: JSON.stringify(game),
-      contentType: "application/json"
-    };
-
-    var promise = $.ajax(options);
-    promise.done(function(response){
-      game.state = response.state;
+    var board = new TicTacToe.TicTacToeBoard(game.state);
+    var aiTeam = board.oppositePlayer(game.team);
+    var aiPlayer = new TicTacToe.TicTacToeAIPlayer();
+    aiPlayer.initialize(aiTeam, board);
+    var move = aiPlayer.makeMove();
+    if(move != null){
+      board.makeMove(aiTeam, move);
+    }
+    game.state = board.board;
+    setTimeout(function(){
       updateTrisDom();
-      isClicked = false;
-      setTimeout(function(){
+    },100)
 
-        if (response.winner.team !== "") {
-          if (response.winner.team.toUpperCase() === "O") {
-            punteggi.sconfitte++;
-            bootbox.confirm({
-              title: "Hai Perso:(",
-              message: "Vuoi ricominciare?",
-              buttons: {
-                cancel: {
-                  label: '<i class="fa fa-times"></i> No, voglio uscire!'
-                },
-                confirm: {
-                  label: '<i class="fa fa-check"></i> Si'
-                }
-              },
-              callback: function (result) {
-                emptyTris();
-                updateScores();
-              }
-            });
-
-          }
-
-        }
-        if (response.draw === true){
+    isClicked = false;
+    setTimeout(function(){
+      var winner = board.winner();
+      if (winner !== null) {
+        if (winner.cell === ""){
           punteggi.pareggi++;
-          if (confirm('Il risultato è un pareggio')) {
-            emptyTris();
-            updateScores();
-          }
+          bootbox.confirm({
+            title: "Hai Pareggiato!!",
+            message: "Vuoi ricominciare?",
+            buttons: {
+              cancel: {
+                label: '<i class="fa fa-times"></i> No, voglio uscire!'
+              },
+              confirm: {
+                label: '<i class="fa fa-check"></i> Si'
+              }
+            },
+            callback: function (result) {
+              emptyTris();
+              updateScores();
+            }
+          });
         }
-      }, 500)
+        else if (winner.cell === "O") {
+          punteggi.sconfitte++;
+          bootbox.confirm({
+            title: "Hai Perso:(",
+            message: "Vuoi ricominciare?",
+            buttons: {
+              cancel: {
+                label: '<i class="fa fa-times"></i> No, voglio uscire!'
+              },
+              confirm: {
+                label: '<i class="fa fa-check"></i> Si'
+              }
+            },
+            callback: function (result) {
+              emptyTris();
+              updateScores();
+            }
+          });
 
-    });
+        }
+
+      }
+
+    }, 500)
+    
 
   }
 

@@ -7,9 +7,9 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script>
 		var myJson = {state: ['', '', '', '', '', '', '', '', ''], team: 'x'};
-		
+
 		var game = {};
-		
+
 		function restcall(x,y){
 			var tableBody = document.getElementById('gameTable').children[0];
 			if(game.state){
@@ -23,26 +23,26 @@
 				game.state[x + (y*3)] = 'x';
 			}
 			tableBody.children[x].children[y].innerHTML = 'x';
-			
-			
+
+
 			setTimeout(function(){
-				$.ajax({ 
+				$.ajax({
 					   type: "POST",
 					   data: JSON.stringify(eval(game)),
 					   dataType: "json", //response
 					   contentType: "application/json", //request
-					   url: "rest/game",
+					   url: "http://10.0.0.18:8080/jerseybackend/rest/game",
 					   success: function(data){
 						 game = data;
-						 
+
 						 tableBody.children[0].children[0].innerHTML = data.state[0]
 						 tableBody.children[1].children[0].innerHTML = data.state[1]
 						 tableBody.children[2].children[0].innerHTML = data.state[2]
-						 
+
 						 tableBody.children[0].children[1].innerHTML = data.state[3]
 						 tableBody.children[1].children[1].innerHTML = data.state[4]
 						 tableBody.children[2].children[1].innerHTML = data.state[5]
-						 
+
 						 tableBody.children[0].children[2].innerHTML = data.state[6]
 						 tableBody.children[1].children[2].innerHTML = data.state[7]
 						 tableBody.children[2].children[2].innerHTML = data.state[8];
@@ -55,18 +55,18 @@
 								   window.location.reload();
 								 }
 							 }, 400);
-						 
+
 					   	}
 					},
 					   cache: false
 					}).fail(function (jqXHR, textStatus, error) {
 					    console.log(error);
 					});
-				
-				
+
+
 			}, 500);
-			
-				
+
+
 		}
 	</script>
 </head>
@@ -93,7 +93,7 @@
 						</tr>
 					</table>
 				</div>
-		</div>	
+		</div>
 	</div>
 
 </body>

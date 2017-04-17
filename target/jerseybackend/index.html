@@ -47,31 +47,31 @@
         <div class="col-xs-12">
           <div id="tris" class=" text-center quadrato">
 
-            <div onclick="handleClick(0)" class="quadrato-top-left col-md-4 col-sm-4 col-xs-4">
+            <div onclick="handleClick(0)" class="quadrato-top-left col-xs-4">
 
             </div>
-            <div onclick="handleClick(1)" class="quadrato-top col-md-4 col-sm-4 col-xs-4">
+            <div onclick="handleClick(1)" class="quadrato-top col-xs-4">
 
             </div>
-            <div onclick="handleClick(2)" class="quadrato-top-right col-md-4 col-sm-4 col-xs-4">
+            <div onclick="handleClick(2)" class="quadrato-top-right col-xs-4">
 
             </div>
-            <div onclick="handleClick(3)" class="quadrato-middle-left col-md-4 col-sm-4 col-xs-4">
+            <div onclick="handleClick(3)" class="quadrato-middle-left col-xs-4">
 
             </div>
-            <div onclick="handleClick(4)" class="quadrato-middle col-md-4 col-sm-4 col-xs-4">
+            <div onclick="handleClick(4)" class="quadrato-middle col-xs-4">
 
             </div>
-            <div onclick="handleClick(5)" class="quadrato-middle-right col-md-4 col-sm-4 col-xs-4">
+            <div onclick="handleClick(5)" class="quadrato-middle-right col-xs-4">
 
             </div>
-            <div onclick="handleClick(6)" class="quadrato-bottom-left col-md-4 col-sm-4 col-xs-4">
+            <div onclick="handleClick(6)" class="quadrato-bottom-left col-xs-4">
 
             </div>
-            <div onclick="handleClick(7)" class="quadrato-bottom col-md-4 col-sm-4 col-xs-4">
+            <div onclick="handleClick(7)" class="quadrato-bottom col-xs-4">
 
             </div>
-            <div onclick="handleClick(8)" class="quadrato-bottom-right col-md-4 col-sm-4 col-xs-4">
+            <div onclick="handleClick(8)" class="quadrato-bottom-right col-xs-4">
 
             </div>
 
@@ -81,17 +81,25 @@
 
 
       <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-6">
-          <h3>Tuo Punteggio</h3>
+        <div class="col-sm-4 col-xs-12">
+          <h3>Vittorie</h3>
+          <p id="vittorie"></p>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-6">
-          <h3>Punteggio PC</h3>
+        <div class="col-sm-4 col-xs-12">
+          <h3>Pareggi</h3>
+          <p id="pareggi"></p>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+          <h3>Sconfitte</h3>
+          <p id="sconfitte"></p>
         </div>
       </div>
   </div>
 
   <!-- jQuery (Bootstrap JS plugins depend on it) -->
   <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="node_modules/bootbox/bootbox.min.js"></script>
+  <script src="node_modules/tictactoe-ai/dist/tictactoe.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/ajax-utils.js"></script>
   <script src="js/script.js"></script>
