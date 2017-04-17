@@ -1,9 +1,15 @@
-var URL = {
-  test: "http://10.0.0.18:8080/jerseybackend/rest/game",
-  final: "rest/game"
-}
+document.addEventListener("DOMContentLoaded",
+  function (event) {
 
+    $.get('../login.html', function(loginTemplate){
+      bootbox.confirm(loginTemplate, function(result) {
+          if(result)
+              $('#infos').submit();
+    })
 
+});
+  }
+);
 var game = {
   team: "X",
   state: ["","","","","","","","",""]
@@ -84,7 +90,7 @@ function handleClick(index){
       }
 
     }, 500)
-    
+
 
   }
 
