@@ -41,7 +41,7 @@ function handleClick(index){
     game.state = board.board;
     setTimeout(function(){
       updateTrisDom();
-    },100)
+    },500)
 
     isClicked = false;
     setTimeout(function(){
@@ -65,7 +65,7 @@ function handleClick(index){
                 emptyTris();
               }
               else {
-                window.location.reload();
+                logout();
               }
             }
           });
@@ -88,7 +88,7 @@ function handleClick(index){
                 emptyTris();
               }
               else {
-                window.location.reload();
+                logout();
               }
             }
           });
@@ -111,10 +111,10 @@ function updateTrisDom(){
 
     if(game.state[i] !== ""){
       if(game.state[i].toUpperCase() ===  "X"){
-        tris.children[i].innerHTML = "<img class='img' src='images/x-tris.jpg'></img>";
+        tris.children[i].innerHTML = "<img class='img img-responsive center-block' src='images/x-tris.jpg'></img>";
       }
       else if(game.state[i].toUpperCase() ===  "O"){
-        tris.children[i].innerHTML = "<img class='img' src='images/o-tris.jpg'></img>";
+        tris.children[i].innerHTML = "<img class='img img-responsive center-block' src='images/o-tris.jpg'></img>";
       }
     }
 
@@ -127,4 +127,8 @@ function emptyTris(){
   for (var i = 0; i < tris.children.length; i++) {
     tris.children[i].innerHTML = "";
   }
+}
+function logout(){
+  localStorage.removeItem("username");
+  window.location.reload();
 }

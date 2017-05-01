@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "animate.css": "^3.5.2",
     "bootbox": "^4.4.0",
+    "font-awesome": "^4.7.0",
     "tictactoe-ai": "^1.0.1"
   }
 }

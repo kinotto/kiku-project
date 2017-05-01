@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tic Tac Toe</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
@@ -13,79 +15,52 @@
 <body>
   <header>
     <nav class="navbar navbar-default">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-header">
-
-            <h1 class="navbar-header" id="user">Benvenuto/a nella pagina di Hakim...</h1>
-            <h2 class="navbar-brand" id="underWelcome">e preparati a giocare!!</h2>
-
-
-          <button id="toggleNav" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false" style="display:none">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+          <div class="row" id="welcome">
+            <div class="col-xs-12">
+              <h1 class="animated rubberBand">Benvenuto/a nella pagina di Hakim...</h1>
+              <h4>e preparati a giocare..</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <h3 style="text-align: left; margin-top: 8px;" id="user"></h3>
+            </div>
+            <div class="col-xs-6">
+              <div id="logout" class="visible-sm visible-md visible-lg" style="display:none !important;">
+                <span class="glyphicon glyphicon-user"></span>
+                <a class="navbar-brand" href="" onclick="logout()" style="float:right;"><span>Logout</span></a>
+              </div>
+              <button id="toggleNav" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false" style="display:none">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+          </div>
         </div>
         <div class="visible-xs">
           <div id="collapsable-nav" class="collapse navbar-collapse">
             <ul id="nav-list" class="nav navbar-nav navbar-right">
               <li>
-                <a href="javascript:" onclick="showInfoPage()">Info</a>
+                <a href="javascript:" onclick="showInfoPage()"><i class="fa fa-info-circle" aria-hidden="true"></i> Info</a>
               </li>
               <li>
-                <a href="" onclick="window.location.href='#'">Logout</a>
+                <a href="" onclick="logout()"><i class="fa fa-home" aria-hidden="true"></i> Logout</a>
               </li>
             </ul>
           </div>
-        </div>
-
-        <div id="logout" class="visible-sm visible-md visible-lg" style="display:none !important;">
-          <span class="glyphicon glyphicon-user"></span>
-          <a class="navbar-brand" href="" onclick="window.location.href='#'" style="float:right; margin-bottom:0;"><span>Logout</span></a>
         </div>
       </div>
     </nav>
   </header>
-  <div class="container-fluid" id="main-content">
-    <h2 class="text-center">Per poter giocare devi prima effettuare il login</h2>
 
-    <button class="btn btn-primary btn-lg center-block" type="button" id="login" name="button" data-toggle="modal" data-target="#login-modal">Login</button>
 
-    <!-- the modal for the login -->
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-      <div class="modal-dialog">
-        <div class="loginmodal-container">
-          <div class="bs-example bs-example-tabs">
-            <ul id="myTab" class="nav nav-tabs">
-              <li class="active"><a href="#signin" data-toggle="tab">Login</a></li>
-              <li class=""><a href="#signup" data-toggle="tab">Registrati</a></li>
-            </ul>
-          </div>
-          <div class="modal-body">
-            <div id="myTabContent" class="tab-content">
-              <div class="tab-pane fade active in" id="signin">
+  <div class="container-fluid" style="background-color: grey;" id="main-content">
 
-                <input type="text" id="inputUsernameLog" class="textBox" name="user" placeholder="Username">
-                <input type="password" id="inputPasswordLog" class="textBox" name="pass" placeholder="Password">
-                <input id="buttonLog" type="submit" onclick="login()"  name="login" class="login loginmodal-submit" value="Login">
-                <div id="resultLog" style="color:#61122f; font-weight: bold;">
-                </div>
-              </div>
 
-              <div class="tab-pane fade" id="signup">
-                <input type="text" id="inputUsernameReg" class="textBox" name="user" placeholder="Username">
-                <input type="password" id="inputPasswordReg" class="textBox" name="pass" placeholder="Password">
-                <input type="submit" id="buttonReg" onclick="register()" name="registration" class="login loginmodal-submit" value="Registrati">
-                <div id="resultReg" style="color:#61122f; font-weight: bold;">
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </div>
 
