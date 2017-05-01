@@ -1,15 +1,15 @@
-document.addEventListener("DOMContentLoaded",
-  function (event) {
-
-    $.get('../login.html', function(loginTemplate){
-      bootbox.confirm(loginTemplate, function(result) {
-          if(result)
-              $('#infos').submit();
-    })
-
-});
-  }
-);
+// document.addEventListener("DOMContentLoaded",
+//   function (event) {
+//
+//     $.get('../login.html', function(loginTemplate){
+//       bootbox.alert(loginTemplate, function(result) {
+//           if(result)
+//               $('#infos').submit();
+//     })
+//
+// });
+//   }
+// );
 var game = {
   team: "X",
   state: ["","","","","","","","",""]
@@ -20,7 +20,7 @@ var punteggi = {
   pareggi: 0,
   sconfitte: 0
 }
-updateScores();
+
 
 var isClicked = false;
 function handleClick(index){
@@ -61,8 +61,12 @@ function handleClick(index){
               }
             },
             callback: function (result) {
-              emptyTris();
-              updateScores();
+              if (result === true) {
+                emptyTris();
+              }
+              else {
+                window.location.reload();
+              }
             }
           });
         }
@@ -80,13 +84,18 @@ function handleClick(index){
               }
             },
             callback: function (result) {
-              emptyTris();
-              updateScores();
+              if (result === true) {
+                emptyTris();
+              }
+              else {
+                window.location.reload();
+              }
             }
           });
 
         }
-
+        updateScores();
+        regScore();
       }
 
     }, 500)
@@ -118,10 +127,4 @@ function emptyTris(){
   for (var i = 0; i < tris.children.length; i++) {
     tris.children[i].innerHTML = "";
   }
-}
-
-function updateScores(){
-  document.querySelector('#vittorie').innerHTML = ""+punteggi.vittorie;
-  document.querySelector('#pareggi').innerHTML = punteggi.pareggi;
-  document.querySelector('#sconfitte').innerHTML = punteggi.sconfitte;
 }

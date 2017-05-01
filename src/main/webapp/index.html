@@ -1,105 +1,99 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tic Tac Toe</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
 <body>
   <header>
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html"><h1>Bentornato Hakim</h1></a>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
 
-      </div>
-      <div class="visible-xs">
-        <div id="collapsable-nav" class="collapse navbar-collapse">
-        <ul id="nav-list" class="nav navbar-nav navbar-right">
-          <li>
-            <a href="#">Logout</a>
-          </li>
-        </ul>
+            <h1 class="navbar-header" id="user">Benvenuto/a nella pagina di Hakim...</h1>
+            <h2 class="navbar-brand" id="underWelcome">e preparati a giocare!!</h2>
+
+
+          <button id="toggleNav" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false" style="display:none">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
         </div>
-    </div>
-    <div class="visible-sm visible-md visible-lg">
-    <span class=" glyphicon glyphicon-user"></span>
-    </div>
-    </div>
-  </nav>
+        <div class="visible-xs">
+          <div id="collapsable-nav" class="collapse navbar-collapse">
+            <ul id="nav-list" class="nav navbar-nav navbar-right">
+              <li>
+                <a href="javascript:" onclick="showInfoPage()">Info</a>
+              </li>
+              <li>
+                <a href="" onclick="window.location.href='#'">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="logout" class="visible-sm visible-md visible-lg" style="display:none !important;">
+          <span class="glyphicon glyphicon-user"></span>
+          <a class="navbar-brand" href="" onclick="window.location.href='#'" style="float:right; margin-bottom:0;"><span>Logout</span></a>
+        </div>
+      </div>
+    </nav>
   </header>
-  <div class="container-fluid">
-      <h2 class="text-center">Tris / Tic Tac Toe</h2>
+  <div class="container-fluid" id="main-content">
+    <h2 class="text-center">Per poter giocare devi prima effettuare il login</h2>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <div id="tris" class=" text-center quadrato">
+    <button class="btn btn-primary btn-lg center-block" type="button" id="login" name="button" data-toggle="modal" data-target="#login-modal">Login</button>
 
-            <div onclick="handleClick(0)" class="quadrato-top-left col-xs-4">
+    <!-- the modal for the login -->
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="loginmodal-container">
+          <div class="bs-example bs-example-tabs">
+            <ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#signin" data-toggle="tab">Login</a></li>
+              <li class=""><a href="#signup" data-toggle="tab">Registrati</a></li>
+            </ul>
+          </div>
+          <div class="modal-body">
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade active in" id="signin">
+
+                <input type="text" id="inputUsernameLog" class="textBox" name="user" placeholder="Username">
+                <input type="password" id="inputPasswordLog" class="textBox" name="pass" placeholder="Password">
+                <input id="buttonLog" type="submit" onclick="login()"  name="login" class="login loginmodal-submit" value="Login">
+                <div id="resultLog" style="color:#61122f; font-weight: bold;">
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="signup">
+                <input type="text" id="inputUsernameReg" class="textBox" name="user" placeholder="Username">
+                <input type="password" id="inputPasswordReg" class="textBox" name="pass" placeholder="Password">
+                <input type="submit" id="buttonReg" onclick="register()" name="registration" class="login loginmodal-submit" value="Registrati">
+                <div id="resultReg" style="color:#61122f; font-weight: bold;">
+                </div>
+              </div>
 
             </div>
-            <div onclick="handleClick(1)" class="quadrato-top col-xs-4">
-
-            </div>
-            <div onclick="handleClick(2)" class="quadrato-top-right col-xs-4">
-
-            </div>
-            <div onclick="handleClick(3)" class="quadrato-middle-left col-xs-4">
-
-            </div>
-            <div onclick="handleClick(4)" class="quadrato-middle col-xs-4">
-
-            </div>
-            <div onclick="handleClick(5)" class="quadrato-middle-right col-xs-4">
-
-            </div>
-            <div onclick="handleClick(6)" class="quadrato-bottom-left col-xs-4">
-
-            </div>
-            <div onclick="handleClick(7)" class="quadrato-bottom col-xs-4">
-
-            </div>
-            <div onclick="handleClick(8)" class="quadrato-bottom-right col-xs-4">
-
-            </div>
-
           </div>
         </div>
       </div>
+    </div>
 
-
-      <div class="row">
-        <div class="col-sm-4 col-xs-12">
-          <h3>Vittorie</h3>
-          <p id="vittorie"></p>
-        </div>
-        <div class="col-sm-4 col-xs-12">
-          <h3>Pareggi</h3>
-          <p id="pareggi"></p>
-        </div>
-        <div class="col-sm-4 col-xs-12">
-          <h3>Sconfitte</h3>
-          <p id="sconfitte"></p>
-        </div>
-      </div>
   </div>
 
   <!-- jQuery (Bootstrap JS plugins depend on it) -->
   <script src="js/jquery-1.11.3.min.js"></script>
   <script src="node_modules/bootbox/bootbox.min.js"></script>
   <script src="node_modules/tictactoe-ai/dist/tictactoe.min.js"></script>
+  <script src="js/config.js"></script>
   <script src="js/database.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/ajax-utils.js"></script>
