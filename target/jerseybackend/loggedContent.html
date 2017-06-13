@@ -1,53 +1,55 @@
-<h2 class="text-center">Tris / Tic Tac Toe</h2>
-
-<div class="row">
-  <div class="col-xs-12">
-    <div id="tris" class=" text-center quadrato">
-
-      <div onclick="handleClick(0)" class="quadrato-top-left col-xs-4">
-
-      </div>
-      <div onclick="handleClick(1)" class="quadrato-top col-xs-4">
-
-      </div>
-      <div onclick="handleClick(2)" class="quadrato-top-right col-xs-4">
-
-      </div>
-      <div onclick="handleClick(3)" class="quadrato-middle-left col-xs-4">
-
-      </div>
-      <div onclick="handleClick(4)" class="quadrato-middle col-xs-4">
-
-      </div>
-      <div onclick="handleClick(5)" class="quadrato-middle-right col-xs-4">
-
-      </div>
-      <div onclick="handleClick(6)" class="quadrato-bottom-left col-xs-4">
-
-      </div>
-      <div onclick="handleClick(7)" class="quadrato-bottom col-xs-4">
-
-      </div>
-      <div onclick="handleClick(8)" class="quadrato-bottom-right col-xs-4">
-
-      </div>
-
+<!-- tre sezioni per vittorie, pareggi e sconfitte -->
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-xs-4">
+      <h4>Vittorie</h4>
+      <p id="vittorie"></p>
+    </div>
+    <div class="col-xs-4">
+      <h4>Pareggi</h4>
+      <p id="pareggi"></p>
+    </div>
+    <div class="col-xs-4">
+      <h4>Sconfitte</h4>
+      <p id="sconfitte"></p>
     </div>
   </div>
-</div>
+  <hr style="border-top: 1px solid black; margin-top:10px;">
 
+  <!-- intero tris -->
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="tris" class=" text-center quadrato ">
 
-<div class="row">
-  <div class="col-sm-4 col-xs-12">
-    <h3>Vittorie</h3>
-    <p id="vittorie"></p>
-  </div>
-  <div class="col-sm-4 col-xs-12">
-    <h3>Pareggi</h3>
-    <p id="pareggi"></p>
-  </div>
-  <div class="col-sm-4 col-xs-12">
-    <h3>Sconfitte</h3>
-    <p id="sconfitte"></p>
+        <div onclick="handleClick(0)" class="quadrato-top-left col-xs-4">
+
+        </div>
+        <div onclick="handleClick(1)" class="quadrato-top col-xs-4">
+
+        </div>
+        <div onclick="handleClick(2)" class="quadrato-top-right col-xs-4">
+
+        </div>
+        <div onclick="handleClick(3)" class="quadrato-middle-left col-xs-4">
+
+        </div>
+        <div onclick="handleClick(4)" class="quadrato-middle col-xs-4">
+
+        </div>
+        <div onclick="handleClick(5)" class="quadrato-middle-right col-xs-4">
+
+        </div>
+        <div onclick="handleClick(6)" class="quadrato-bottom-left col-xs-4">
+
+        </div>
+        <div onclick="handleClick(7)" class="quadrato-bottom col-xs-4">
+
+        </div>
+        <div onclick="handleClick(8)" class="quadrato-bottom-right col-xs-4">
+
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>

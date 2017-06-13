@@ -1,7 +1,10 @@
+document.getElementById("main-content").innerHTML = "<div style='width:100%; height:430px; display: flex; align-items: center;'><img class='img-responsive center-block' src='images/loader2.gif' style='width:100px; height:100px;'></img><div>"; //mostra il loader al centro della pagina
+
+// chiamata per mostrare il tris al refresh della pagina (entra solo se presente username nella memoria locale del browser)
 if(localStorage.getItem("username") !== null){
   document.getElementById("main-content").innerHTML = "<div style='width:100%; height:430px; display: flex; align-items: center;'><img class='img-responsive center-block' src='images/loader2.gif' style='width:100px; height:100px;'></img><div>";
   document.getElementById("welcome").remove();
-  document.getElementById("user").innerHTML = "Benvenuto " + localStorage.getItem("username") + " !!";
+  document.getElementById("user").innerHTML = "Benvenuto/a " + localStorage.getItem("username") + " !!";
   document.getElementById("logout").style.display = "block";
   document.getElementById("toggleNav").style = "";
   var user = {
@@ -21,35 +24,8 @@ else{
   })
 }
 
-
-//Blocco che permette il click del bottone login alla pressione del tasto enter
-var elementsLog = document.querySelectorAll("#inputUsernameLog, #inputPasswordLog"); //elemento che contiene i riferimenti alle caselle di testo del login
-for (var i = 0; i < elementsLog.length; i++) {
-  elementsLog[i].addEventListener("keyup", function(event) {
-    event.preventDefault();
-    if (event.keyCode == 13) {
-      document.querySelector("#buttonLog").click();
-    }
-  });
-}
-
-//Blocco che permette il click del bottone register alla pressione del tasto enter
-var elementsReg = document.querySelectorAll("#inputUsernameReg, #inputPasswordReg");
-for (var i = 0; i < elementsReg.length; i++) {
-  elementsReg[i].addEventListener("keyup", function(event) {
-    event.preventDefault();
-    if (event.keyCode == 13) {
-      document.querySelector("#buttonReg").click();
-    }
-  });
-}
-
-
+// funzione login con chiamata ajax per recuperare la pagina con il gioco
 function login(){
-  // $.ajax(
-  //   method:"GET",
-  //   url: "images/loader.gif"
-  // ).
 
   var email = document.getElementById('inputUsernameLog').value;
   var passwd = document.getElementById('inputPasswordLog').value;
@@ -64,34 +40,24 @@ function login(){
     data: JSON.stringify(eval(user)),
     contentType: "application/json"
   };
-
+  // controllo se campi vuoti restituisce stringa di riempire i campi
   if (user.userName === "" && user.password === "") {
     document.getElementById('resultLog').innerHTML = "Riempi tutti i campi";
   }
   else {
 
-    document.getElementById("resultLog").innerHTML = "<img class='img-responsive center-block' src='images/loader1.gif' style='width:30px; height:30px;'></img>";
-    var promise = $.ajax(options);
-    promise.done(function(response){
+    document.getElementById("resultLog").innerHTML = "<img class='img-responsive center-block' src='images/loader1.gif' style='width:30px; height:30px;'></img>"; //mostra loader dopo aver cliccato login
+    $.ajax({
+      method: "POST",
+      url:  config.apiLogin,
+      dataType: "json",
+      data: JSON.stringify(eval(user)),
+      contentType: "application/json"
+    }).done(function(response){
       if(response === true){
         localStorage.setItem("username",user.userName);
         window.user = user;
-        // window.location.replace("indexLogged.html");
-        document.getElementById("user").innerHTML = "Benvenuto " + user.userName + " !!";
-        document.getElementById("welcome").remove();
-        document.getElementById("logout").style.display = "block";
-        document.getElementById("toggleNav").style = "";
-        $.ajax({
-          method:"GET",
-          url:"loggedContent.html"
-        }).done(function(response){
-          // document.querySelector('#main-content').remove().children;
-          $('#login-modal').modal('hide');
-          document.querySelector("#main-content").innerHTML = response;
-          getScore();
-        })
-
-
+        window.location.reload();
       }
       else{
         document.getElementById('resultLog').innerHTML = "Nome utente o password errati!"
@@ -103,9 +69,9 @@ function login(){
 }
 
 
-
+// funzione register con chiamata ajax per inviare dati al database
 function register(){
-  var email = document.getElementById('inputUsernameReg').value;
+  var email = document.getElementById('inputUsernameReg').value; //variabile che contiene username inserito nel campo di testo
   var passwd = document.getElementById('inputPasswordReg').value;
   var user = {
     userName: email,
@@ -118,6 +84,7 @@ function register(){
     data: JSON.stringify(eval(user)),
     contentType: "application/json"
   };
+  // controllo se campi vuoti restituisce stringa di riempire i campi
   if (user.userName === "" && user.password === "") {
     document.getElementById('resultReg').innerHTML = "Riempi tutti i campi";
   }
@@ -129,7 +96,7 @@ function register(){
         document.getElementById('resultReg').innerHTML = "Registrazione effettuata correttamente!"
       }
       else{
-        document.getElementById('resultReg').innerHTML = "Campi non validi"
+        document.getElementById('resultReg').innerHTML = "Username già in uso"
       }
       document.getElementById('inputUsernameReg').value = "";
       document.getElementById('inputPasswordReg').value = "";
@@ -140,6 +107,7 @@ function register(){
 
 }
 
+// funzione con chiamata ajax per inviare punteggi al database
 function regScore(){
   var punteggi = {
     username: window.user.userName,
@@ -160,6 +128,7 @@ function regScore(){
   })
 }
 
+// funzione che recupera i punteggi dal database attraverso una chiamata ajax
 function getScore(){
   document.querySelector('#vittorie').innerHTML = "<img class='img-responsive center-block' src='images/loader2.gif' style='width:30px; height:30px;'></img>";
   document.querySelector('#pareggi').innerHTML = "<img class='img-responsive center-block' src='images/loader2.gif' style='width:30px; height:30px;'></img>";
@@ -180,6 +149,7 @@ function getScore(){
   })
 }
 
+// funzione che recupera contenuto della pagina di info
 function showInfoPage(){
   document.querySelector("#toggleNav").click();
   var options = {
@@ -191,6 +161,7 @@ function showInfoPage(){
   })
 }
 
+// funzione che recupera contenuto della pagina col gioco
 function showGame(){
   var options = {
     method: "GET",
@@ -202,6 +173,7 @@ function showGame(){
   })
 }
 
+// funzione che aggiorna i punteggi nella pagina
 function updateScores(){
   document.querySelector('#vittorie').innerHTML = punteggi.vittorie;
   document.querySelector('#pareggi').innerHTML = punteggi.pareggi;

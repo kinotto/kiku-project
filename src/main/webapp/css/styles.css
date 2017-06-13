@@ -10,6 +10,9 @@ h1{
   color: #557c3e;
   display: inline;
 }
+.margin-top{
+  margin-top: 10px;
+}
 h3{
   color: #557c3e;
 }
@@ -81,10 +84,12 @@ h2{
   margin-right: auto;
   margin-bottom: 20px;
 }
+/*dimensioni celle*/
 .quadrato *{
   width: 33.333333333%;
   height: 33.333333333%;
 }
+/*bordi delle celle*/
 .quadrato .quadrato-top-left{
   border-bottom-style: solid;
 }
@@ -120,6 +125,7 @@ h2{
   margin-right: auto;
   margin-bottom: 10px;
 }
+/*immagine della cella*/
 .img{
   width: 64px;
   height: 64px;
@@ -191,9 +197,6 @@ h2{
   font-weight: 700;
   height: 36px;
   padding: 0 8px;
-  /* border-radius: 3px; */
-  /* -webkit-user-select: none;
-  user-select: none; */
 }
 
 .loginmodal-submit {

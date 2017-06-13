@@ -1,4 +1,4 @@
-var ambiente = "locale";
+var ambiente = "raspberry"; //ambiente con cui si collega la macchina
 var config = {
   apiLogin: {
     local: "http://10.0.0.15:8080/jerseybackend/rest/login",
@@ -18,7 +18,7 @@ var config = {
   }
 }
 if(ambiente === "locale"){
-  config.apiLogin = config.apiLogin.local;
+  config.apiLogin = config.apiLogin.local; //apiLogin da oggetto diventa una stringa
   config.apiRegister = config.apiRegister.local;
   config.apiRegScore = config.apiRegScore.local;
   config.apiGetScore = config.apiGetScore.local;

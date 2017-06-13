@@ -16,7 +16,7 @@ System.out.println("Loading driver...");
 		    throw new IllegalStateException("Cannot find the driver in the classpath!", e);
 		}
 		
-		String url = "jdbc:mysql://10.0.0.18:3306/trisDb";
+		String url = "jdbc:mysql://localhost:3306/trisDb";
 		String username = "root";
 		String password = "root";
 		Connection connection;
